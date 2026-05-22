@@ -1,0 +1,128 @@
+royalty_event:
+  event_id: evt_citation_2026_05_20_001
+  version: "0.1.0"
+  status: sample
+
+  event_type: citation
+
+  description: >
+    Sample citation event representing that a source, work, structure,
+    artifact, specification, or conceptual framework was explicitly cited,
+    referenced, attributed, or linked.
+
+  source:
+    source_reference: source_kazene_spec_001
+    source_type: specification
+    title: "Royalty OS Payment Rail Bridge v0.1"
+    source_layer: trace_architecture
+    note: >
+      The source represents the referenced document, structure, artifact,
+      specification, or conceptual framework.
+
+  trace:
+    trace_reference: trace_citation_2026_05_20_001
+    trace_type: citation_trace
+    trace_quality: high
+    trace_timestamp: "2026-05-20T00:00:00Z"
+    trace_source_system: sample_trace_system
+    evidence_summary: >
+      A sample trace record indicates that the source was explicitly cited
+      or referenced in a downstream artifact.
+
+  actor:
+    actor_type: human
+    actor_reference: author_sample_001
+    actor_role: citing_author
+    note: >
+      The actor represents the entity that created or recorded the citation.
+      This may be a human, AI agent, platform, system, organization, or unknown actor.
+
+  target:
+    target_reference: article_sample_001
+    target_type: article
+    target_title: "Value Circulation and Royalty OS"
+    note: >
+      The target represents the downstream artifact in which the citation
+      or reference appears.
+
+  citation_context:
+    citation_method:
+      - explicit_reference
+      - hyperlink
+    citation_position: body
+    citation_scope: conceptual_reference
+    citation_strength: medium
+    citation_purpose:
+      - attribution
+      - conceptual_context
+    quoted_or_paraphrased: paraphrased
+    note: >
+      Citation context helps distinguish shallow references from deeper
+      conceptual dependency or structural reuse.
+
+  weighting:
+    weight: 0.35
+    confidence: 0.90
+    allocation_relevance: medium
+    relevance_reason: >
+      Citation is stronger than access because it explicitly identifies a
+      source relationship. However, citation alone does not determine final
+      allocation weight or payment obligation.
+
+  review:
+    review_status: pending
+    review_type:
+      - citation_context_review
+      - attribution_review
+    reviewer_reference: null
+    reviewed_at: null
+    review_notes: >
+      This sample citation event has not been fully reviewed.
+      It may support allocation analysis, but it should not directly create
+      allocation intent without further review.
+
+  dispute:
+    dispute_status: none
+    dispute_reference: null
+    correction_path_available: true
+    dispute_notes: >
+      No dispute is attached to this sample event.
+      Real implementations should preserve dispute and correction paths.
+
+  downstream_use:
+    may_support:
+      - attribution_analysis
+      - event_bundle_context
+      - allocation_candidate_review
+      - citation_weighting
+    should_not_directly_trigger:
+      - payment_rail_bridge
+      - external_payment
+      - legal_claim
+      - final_allocation
+    note: >
+      Citation events may support allocation candidates, especially when
+      combined with reuse, influence, or impact events. They should not
+      directly trigger payment.
+
+  lifecycle:
+    current_state: classified_as_event
+    allowed_next_states:
+      - pending_review
+      - approved
+      - aggregated
+      - disputed
+      - rejected
+      - superseded
+    not_allowed_next_states_without_review:
+      - allocation_triggered
+      - payment_sent
+      - settlement_completed
+
+  safety_notes:
+    - Citation does not automatically determine contribution weight.
+    - Citation does not execute payment.
+    - Citation does not determine legal ownership.
+    - Citation quality and context may require review.
+    - Citation events should preserve trace context.
+    - Citation events should remain review-aware and dispute-aware.
