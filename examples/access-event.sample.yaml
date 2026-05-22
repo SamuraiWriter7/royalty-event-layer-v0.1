@@ -1,0 +1,117 @@
+royalty_event:
+  event_id: evt_access_2026_05_20_001
+  version: "0.1.0"
+  status: sample
+
+  event_type: access
+
+  description: >
+    Sample access event representing that a source, work, structure,
+    artifact, or record was accessed, read, fetched, queried, or consumed.
+
+  source:
+    source_reference: source_kazene_spec_001
+    source_type: specification
+    title: "Royalty OS Payment Rail Bridge v0.1"
+    source_layer: trace_architecture
+    note: >
+      The source represents a document, structure, artifact, or specification
+      that was accessed by an actor.
+
+  trace:
+    trace_reference: trace_access_2026_05_20_001
+    trace_type: access_trace
+    trace_quality: medium
+    trace_timestamp: "2026-05-20T00:00:00Z"
+    trace_source_system: sample_trace_system
+    evidence_summary: >
+      A sample trace record indicates that the source was accessed.
+      This does not prove reuse, influence, ownership, or payment obligation.
+
+  actor:
+    actor_type: ai_agent
+    actor_reference: agent_sample_001
+    actor_role: reader
+    note: >
+      The actor represents the entity that accessed the source.
+      This may be a human, AI agent, platform, system, organization, or unknown actor.
+
+  target:
+    target_reference: null
+    target_type: null
+    note: >
+      Access events may not always have a downstream target.
+      A target may be added if the access is connected to a later output,
+      document, model response, or generated artifact.
+
+  event_context:
+    access_method: retrieval
+    access_channel: sample_context_window
+    access_count: 1
+    access_scope: partial
+    access_purpose: reference
+    note: >
+      These fields are illustrative only. Real implementations may use
+      platform-specific or system-specific access metadata.
+
+  weighting:
+    weight: 0.10
+    confidence: 0.80
+    allocation_relevance: low
+    relevance_reason: >
+      Access indicates consumption or retrieval, but access alone should not
+      automatically create allocation intent or payment obligation.
+
+  review:
+    review_status: pending
+    review_type:
+      - event_classification_review
+    reviewer_reference: null
+    reviewed_at: null
+    review_notes: >
+      This sample access event has not been reviewed.
+      It should not be used for allocation without further context.
+
+  dispute:
+    dispute_status: none
+    dispute_reference: null
+    correction_path_available: true
+    dispute_notes: >
+      No dispute is attached to this sample event.
+      Real implementations should preserve dispute and correction paths.
+
+  downstream_use:
+    may_support:
+      - attention_analysis
+      - access_aggregation
+      - event_bundle_context
+      - weak_allocation_signal
+    should_not_directly_trigger:
+      - allocation_intent
+      - payment_rail_bridge
+      - external_payment
+      - legal_claim
+    note: >
+      Access events may support later event bundles, but they should not
+      directly trigger allocation or payment.
+
+  lifecycle:
+    current_state: classified_as_event
+    allowed_next_states:
+      - pending_review
+      - aggregated
+      - rejected
+      - disputed
+      - superseded
+    not_allowed_next_states_without_review:
+      - allocation_triggered
+      - payment_sent
+      - settlement_completed
+
+  safety_notes:
+    - Access does not automatically equal payment obligation.
+    - Access does not prove reuse.
+    - Access does not prove influence.
+    - Access does not determine legal ownership.
+    - Access events should preserve trace context.
+    - Access events should remain review-aware and dispute-aware.
