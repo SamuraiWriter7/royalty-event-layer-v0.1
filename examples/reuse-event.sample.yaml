@@ -1,0 +1,141 @@
+royalty_event:
+  event_id: evt_reuse_2026_05_20_001
+  version: "0.1.0"
+  status: sample
+
+  event_type: reuse
+
+  description: >
+    Sample reuse event representing that a structure, expression, schema,
+    protocol component, design pattern, terminology, or conceptual module
+    was reused, adapted, or transformed in a downstream artifact.
+
+  source:
+    source_reference: source_kazene_spec_001
+    source_type: specification
+    title: "Royalty OS Payment Rail Bridge v0.1"
+    source_layer: trace_architecture
+    note: >
+      The source represents the original structure, artifact, specification,
+      schema, terminology, or conceptual framework that may have been reused.
+
+  trace:
+    trace_reference: trace_reuse_2026_05_20_001
+    trace_type: reuse_trace
+    trace_quality: medium_high
+    trace_timestamp: "2026-05-20T00:00:00Z"
+    trace_source_system: sample_trace_system
+    evidence_summary: >
+      A sample trace record indicates that a structural component, terminology,
+      schema pattern, or conceptual model from the source appears to have been
+      reused or adapted in a downstream artifact.
+
+  actor:
+    actor_type: organization
+    actor_reference: org_sample_001
+    actor_role: downstream_builder
+    note: >
+      The actor represents the entity that reused, adapted, transformed,
+      or incorporated the source structure. This may be a human, AI agent,
+      organization, platform, system, or unknown actor.
+
+  target:
+    target_reference: downstream_protocol_sample_001
+    target_type: protocol_specification
+    target_title: "Sample Downstream Value Circulation Protocol"
+    note: >
+      The target represents the downstream artifact where reuse or adaptation
+      appears.
+
+  reuse_context:
+    reuse_type:
+      - structural_pattern
+      - terminology
+      - protocol_component
+    reuse_scope: partial
+    transformation_level: adapted
+    similarity_basis:
+      - layer_sequence
+      - field_model
+      - conceptual_mapping
+      - naming_pattern
+    reused_elements:
+      - "Trace → Allocation → Payment Rail flow"
+      - "payment rail candidate model"
+      - "trace-aware value circulation"
+      - "review-aware allocation context"
+    distinction_notes: >
+      This sample describes partial and adapted reuse. It does not claim
+      verbatim copying or legal derivation.
+
+  weighting:
+    weight: 0.62
+    confidence: 0.76
+    allocation_relevance: high
+    relevance_reason: >
+      Reuse may be allocation-relevant when a downstream artifact appears
+      to reuse or adapt a prior structure, schema, terminology, or conceptual
+      module. However, reuse must be distinguished from coincidence, common
+      patterns, or generic design conventions.
+
+  review:
+    review_status: pending
+    review_type:
+      - structural_similarity_review
+      - reuse_context_review
+      - transformation_review
+    reviewer_reference: null
+    reviewed_at: null
+    review_notes: >
+      This sample reuse event has not been fully reviewed.
+      It may support allocation analysis, but it should not directly create
+      allocation intent without further evidence, review, or aggregation.
+
+  dispute:
+    dispute_status: none
+    dispute_reference: null
+    correction_path_available: true
+    dispute_notes: >
+      No dispute is attached to this sample event.
+      Real implementations should preserve dispute, correction, rejection,
+      reversal, or supersession paths.
+
+  downstream_use:
+    may_support:
+      - structural_reuse_analysis
+      - event_bundle_context
+      - allocation_candidate_review
+      - contribution_weighting
+      - lineage_analysis
+    should_not_directly_trigger:
+      - payment_rail_bridge
+      - external_payment
+      - legal_claim
+      - final_allocation
+    note: >
+      Reuse events may strongly support allocation candidates when combined
+      with citation, influence, trace quality, or review outcomes. They should
+      not directly trigger payment.
+
+  lifecycle:
+    current_state: classified_as_event
+    allowed_next_states:
+      - pending_review
+      - approved
+      - aggregated
+      - disputed
+      - rejected
+      - superseded
+      - allocation_candidate
+    not_allowed_next_states_without_review:
+      - allocation_triggered
+      - payment_sent
+      - settlement_completed
+
+  safety_notes:
+    - Reuse does not automatically prove legal derivation.
+    - Reuse does not determine legal ownership.
+    - Reuse does not execute payment.
+    - Similarity should be distinguished from coincidence or generic patterns.
+    - Reuse events should preserve trace context.
+    - Reuse events should remain review-aware and dispute-aware.
