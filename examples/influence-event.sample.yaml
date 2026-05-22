@@ -1,0 +1,148 @@
+royalty_event:
+  event_id: evt_influence_2026_05_20_001
+  version: "0.1.0"
+  status: sample
+
+  event_type: influence
+
+  description: >
+    Sample influence event representing that a source, structure, idea,
+    artifact, specification, or conceptual framework may have influenced
+    a downstream artifact, model output, system design, or document.
+
+  source:
+    source_reference: source_kazene_spec_001
+    source_type: specification
+    title: "Royalty OS Payment Rail Bridge v0.1"
+    source_layer: trace_architecture
+    note: >
+      The source represents the prior structure, idea, artifact, specification,
+      or conceptual framework that may have influenced a downstream result.
+
+  trace:
+    trace_reference: trace_influence_2026_05_20_001
+    trace_type: influence_trace
+    trace_quality: medium
+    trace_timestamp: "2026-05-20T00:00:00Z"
+    trace_source_system: sample_trace_system
+    evidence_summary: >
+      A sample trace record indicates possible structural, conceptual,
+      semantic, or lineage-based influence from the source to a downstream
+      artifact. This does not prove ownership, copying, or direct derivation.
+
+  actor:
+    actor_type: ai_agent
+    actor_reference: agent_sample_001
+    actor_role: downstream_generator
+    note: >
+      The actor represents the entity that generated, transformed, transmitted,
+      or produced the downstream artifact. This may be a human, AI agent,
+      platform, system, organization, or unknown actor.
+
+  target:
+    target_reference: downstream_output_sample_001
+    target_type: ai_generated_output
+    target_title: "Sample Downstream Output Reflecting Prior Structure"
+    note: >
+      The target represents the downstream artifact, output, document,
+      response, or system design that may show influence from the source.
+
+  influence_context:
+    influence_type:
+      - conceptual_alignment
+      - structural_similarity
+      - terminology_resonance
+      - architectural_pattern
+    influence_scope: partial
+    influence_path: inferred
+    directness: indirect
+    similarity_basis:
+      - sequence_of_layers
+      - conceptual_mapping
+      - recurring_terms
+      - value_circulation_structure
+    uncertainty_level: medium
+    alternative_explanations:
+      - common_design_pattern
+      - parallel_development
+      - shared_public_context
+      - generic_architectural_convergence
+    note: >
+      Influence events are often inferential. This sample preserves uncertainty
+      and does not claim direct copying, legal derivation, or automatic
+      allocation entitlement.
+
+  weighting:
+    weight: 0.48
+    confidence: 0.64
+    allocation_relevance: medium
+    relevance_reason: >
+      Influence may be allocation-relevant when a downstream artifact appears
+      to reflect a prior structure, framework, terminology, or conceptual
+      lineage. However, influence is uncertain and should preserve confidence,
+      review, and dispute context.
+
+  review:
+    review_status: pending
+    review_type:
+      - influence_context_review
+      - lineage_review
+      - uncertainty_review
+      - alternative_explanation_review
+    reviewer_reference: null
+    reviewed_at: null
+    review_notes: >
+      This sample influence event has not been fully reviewed.
+      It may support allocation analysis, but it should not directly create
+      allocation intent without further review, aggregation, or readiness checks.
+
+  dispute:
+    dispute_status: none
+    dispute_reference: null
+    correction_path_available: true
+    dispute_notes: >
+      No dispute is attached to this sample event.
+      Real implementations should preserve dispute, correction, rejection,
+      reversal, or supersession paths.
+
+  downstream_use:
+    may_support:
+      - lineage_analysis
+      - event_bundle_context
+      - allocation_candidate_review
+      - contribution_weighting
+      - influence_mapping
+    should_not_directly_trigger:
+      - allocation_intent
+      - payment_rail_bridge
+      - external_payment
+      - legal_claim
+      - final_allocation
+    note: >
+      Influence events may support allocation candidates when combined with
+      citation, reuse, trace quality, scoring, and review outcomes. They should
+      not directly trigger payment.
+
+  lifecycle:
+    current_state: classified_as_event
+    allowed_next_states:
+      - pending_review
+      - approved
+      - aggregated
+      - disputed
+      - rejected
+      - superseded
+      - allocation_candidate
+    not_allowed_next_states_without_review:
+      - allocation_triggered
+      - payment_sent
+      - settlement_completed
+
+  safety_notes:
+    - Influence does not automatically prove ownership.
+    - Influence does not automatically prove reuse.
+    - Influence does not execute payment.
+    - Influence should preserve uncertainty and confidence.
+    - Alternative explanations should remain visible.
+    - Influence events should preserve trace context.
+    - Influence events should remain review-aware and dispute-aware.
