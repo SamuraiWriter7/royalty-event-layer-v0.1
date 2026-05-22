@@ -1,0 +1,193 @@
+royalty_event:
+  event_id: evt_allocation_trigger_2026_05_20_001
+  version: "0.1.0"
+  status: sample
+
+  event_type: allocation_trigger
+
+  description: >
+    Sample allocation trigger event representing that one or more reviewed
+    royalty events have become strong enough to move toward allocation intent
+    preparation.
+
+  source:
+    source_reference: source_kazene_spec_001
+    source_type: specification
+    title: "Royalty OS Payment Rail Bridge v0.1"
+    source_layer: trace_architecture
+    note: >
+      The source represents the prior structure, artifact, specification,
+      or conceptual framework that may become allocation-relevant through
+      reviewed event evidence.
+
+  trace_bundle:
+    trace_bundle_reference: trace_bundle_royalty_2026_05_20_001
+    trace_bundle_type: mixed_trace_bundle
+    trace_quality: medium_high
+    trace_timestamp: "2026-05-20T00:00:00Z"
+    trace_source_system: sample_trace_system
+    included_traces:
+      - trace_access_2026_05_20_001
+      - trace_citation_2026_05_20_001
+      - trace_reuse_2026_05_20_001
+      - trace_influence_2026_05_20_001
+    evidence_summary: >
+      A sample trace bundle combines access, citation, reuse, and influence
+      traces. The bundle suggests that the source may be relevant for
+      allocation intent preparation, but it does not execute payment.
+
+  event_bundle:
+    event_bundle_reference: event_bundle_royalty_2026_05_20_001
+    event_bundle_type: reviewed_event_bundle
+    included_events:
+      - evt_access_2026_05_20_001
+      - evt_citation_2026_05_20_001
+      - evt_reuse_2026_05_20_001
+      - evt_influence_2026_05_20_001
+    aggregate_weight: 0.72
+    aggregate_confidence: 0.78
+    bundle_review_status: approved_for_sample
+    bundle_dispute_status: none
+    note: >
+      This bundle is illustrative. A real implementation would require
+      formal review, validation, weighting, and dispute handling before
+      moving toward allocation intent.
+
+  actor:
+    actor_type: system
+    actor_reference: royalty_event_review_system_sample_001
+    actor_role: allocation_trigger_evaluator
+    note: >
+      The actor represents the system, reviewer, or multi-agent process
+      that identified this event bundle as an allocation trigger candidate.
+
+  target:
+    target_reference: allocation_intent_candidate_2026_05_20_001
+    target_type: allocation_intent_candidate
+    target_title: "Sample Allocation Intent Candidate"
+    note: >
+      The target represents the downstream allocation intent candidate that
+      may be prepared from this trigger event.
+
+  trigger_context:
+    trigger_type:
+      - reviewed_event_bundle
+      - high_reuse_relevance
+      - citation_plus_influence
+      - allocation_candidate_signal
+    trigger_basis:
+      - approved_event_bundle
+      - trace_bundle_context
+      - aggregate_confidence
+      - allocation_relevance
+      - no_active_dispute
+    trigger_threshold_status: met_for_sample
+    allocation_preparation_allowed: true
+    direct_payment_allowed: false
+    note: >
+      This trigger event indicates that allocation intent may be prepared.
+      It does not mean payment should be executed.
+
+  weighting:
+    weight: 0.84
+    confidence: 0.81
+    allocation_relevance: trigger_candidate
+    relevance_reason: >
+      The event bundle combines access, citation, reuse, and influence
+      signals with sufficient sample confidence to move toward allocation
+      intent preparation. This remains a sample and does not represent
+      final allocation or payment.
+
+  review:
+    review_status: approved_for_sample
+    review_type:
+      - event_bundle_review
+      - allocation_trigger_review
+      - dispute_status_review
+      - readiness_precheck
+    reviewer_reference: reviewer_sample_001
+    reviewed_at: "2026-05-20T00:00:00Z"
+    review_notes: >
+      Approved only as a sample allocation trigger event. Real implementations
+      should require human, multi-agent, or governance-aware review before
+      generating allocation intent.
+
+  dispute:
+    dispute_status: none
+    dispute_reference: null
+    correction_path_available: true
+    reversal_path_required: true
+    dispute_notes: >
+      No dispute is attached to this sample trigger event. Real implementations
+      should preserve dispute, correction, reversal, rejection, or supersession
+      paths before and after allocation intent preparation.
+
+  downstream_use:
+    may_support:
+      - allocation_intent_candidate
+      - allocation_readiness_review
+      - event_bundle_escalation
+      - contribution_weighting
+      - royalty_os_preparation
+    should_not_directly_trigger:
+      - payment_rail_bridge
+      - external_payment
+      - settlement_execution
+      - legal_claim
+      - final_allocation
+    note: >
+      Allocation trigger events may support allocation intent preparation,
+      but they should not directly trigger payment rails or final settlement.
+
+  allocation_intent_preparation:
+    candidate_id: allocation_intent_candidate_2026_05_20_001
+    preparation_status: candidate_prepared
+    required_before_allocation_intent:
+      - allocation_readiness_review
+      - recipient_mapping_review
+      - contribution_scope_review
+      - dispute_status_check
+      - allocation_value_review
+    suggested_allocation_intent_fields:
+      - allocation_id
+      - origin_reference
+      - trace_references
+      - event_references
+      - recipient_reference
+      - contribution_description
+      - allocation_value
+      - review_status
+      - dispute_status
+      - payment_eligibility
+    note: >
+      This section shows how a trigger event may prepare the next layer.
+      It does not create final allocation intent by itself.
+
+  lifecycle:
+    current_state: allocation_triggered
+    previous_states:
+      - raw_signal_detected
+      - classified_as_event
+      - pending_review
+      - approved
+      - aggregated
+      - allocation_candidate
+    allowed_next_states:
+      - allocation_intent_candidate
+      - pending_allocation_readiness
+      - disputed
+      - rejected
+      - superseded
+    not_allowed_next_states_without_additional_review:
+      - payment_sent
+      - settlement_completed
+      - final_allocation_approved
+
+  safety_notes:
+    - Allocation trigger does not execute payment.
+    - Allocation trigger does not determine legal ownership.
+    - Allocation trigger does not finalize royalty shares.
+    - Allocation trigger should pass Allocation Readiness before downstream use.
+    - Allocation trigger should preserve trace and event bundle references.
+    - Allocation trigger should preserve dispute and correction paths.
+    - Allocation trigger should not connect directly to payment rails.
