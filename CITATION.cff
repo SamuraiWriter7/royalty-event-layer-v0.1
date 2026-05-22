@@ -1,0 +1,25 @@
+cff-version: 1.2.0
+title: "Royalty Event Layer v0.1"
+message: "If you use this specification, please cite it as follows."
+type: software
+authors:
+  - name: "Shidenkai Alpha"
+version: "0.1.0"
+date-released: "2026-05-20"
+repository-code: "https://github.com/SamuraiWriter7/royalty-event-layer-v0.1"
+license: "MIT"
+keywords:
+  - Royalty OS
+  - Royalty Event
+  - Trace Architecture
+  - Allocation Intent
+  - Value Circulation
+  - AI Agents
+  - Kazene
+  - Civilization OS
+  - Event Layer
+  - Micropayments
+abstract: >
+  Royalty Event Layer v0.1 defines a minimal event layer for converting
+  trace, access, citation, reuse, and influence signals into Royalty OS
+  allocation-ready events while preserving review, dispute, and trace context.
