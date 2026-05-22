@@ -1,0 +1,441 @@
+id: royalty-event-layer-v0.1
+title: Royalty Event Layer v0.1
+version: 0.1.0
+status: draft
+
+description: >
+  A minimal event layer for converting trace, access, citation, reuse,
+  and influence signals into Royalty OS allocation-ready events.
+
+purpose:
+  summary: >
+    Define a structured Royalty Event Layer between trace systems and
+    allocation intent.
+  goals:
+    - classify trace-related signals into event types
+    - preserve trace context before allocation
+    - distinguish raw traces from allocation-ready events
+    - support review-aware and dispute-aware event records
+    - prepare event data for later allocation intent
+  scope:
+    - royalty event modeling
+    - trace-to-event conversion
+    - event type classification
+    - review and dispute status preservation
+    - allocation trigger preparation
+
+core_position:
+  upstream:
+    - trace_architecture
+    - access_logs
+    - citation_records
+    - reuse_records
+    - influence_signals
+    - impact_signals
+  current_layer:
+    - royalty_event_layer
+  downstream:
+    - allocation_intent
+    - allocation_readiness
+    - royalty_os
+    - payment_rail_bridge
+
+architecture_flow:
+  - step: trace_or_signal
+    description: >
+      A raw trace, access log, citation, reuse signal, influence signal,
+      or impact signal is recorded.
+  - step: event_classification
+    description: >
+      The signal is classified into a royalty event type.
+  - step: event_review
+    description: >
+      The event receives review, confidence, and dispute context.
+  - step: allocation_relevance
+    description: >
+      The event is evaluated for possible allocation relevance.
+  - step: allocation_intent_preparation
+    description: >
+      Strong or reviewed events may later support allocation intent.
+  - step: payment_bridge_downstream
+    description: >
+      Allocation intent may later be passed to Payment Rail Bridge.
+      Royalty events do not execute payment directly.
+
+principles:
+  - id: event_is_not_payment
+    statement: >
+      A royalty event does not execute payment and should not be treated
+      as a payment instruction.
+
+  - id: event_is_not_ownership
+    statement: >
+      A royalty event is not a legal ownership claim and does not determine
+      copyright, authorship, or entitlement by itself.
+
+  - id: trace_before_event
+    statement: >
+      A royalty event should preserve trace context or source reference.
+      Without trace context, the event becomes detached from origin.
+
+  - id: review_before_allocation
+    statement: >
+      Royalty events should not automatically become allocation intent
+      without review, aggregation, confidence checks, or readiness logic.
+
+  - id: event_type_specificity
+    statement: >
+      Different event types should not be collapsed into a single generic
+      influence signal. Access, citation, reuse, and influence should remain
+      distinguishable.
+
+  - id: dispute_preservation
+    statement: >
+      Event records should preserve dispute, correction, rejection,
+      reversal, or supersession paths where applicable.
+
+event_types:
+  - id: access_event
+    name: Access Event
+    description: >
+      Represents that a source, work, structure, artifact, or record was accessed,
+      read, viewed, fetched, queried, or otherwise consumed.
+    allocation_relevance: low_to_medium
+    examples:
+      - AI model accessed a document
+      - platform recorded a read event
+      - agent fetched a source record
+      - human reader opened a work
+    cautions:
+      - Access alone should not automatically create payment obligation.
+      - Access events may require aggregation or additional context.
+
+  - id: citation_event
+    name: Citation Event
+    description: >
+      Represents explicit citation, reference, attribution, or source mention.
+    allocation_relevance: medium_to_high
+    examples:
+      - article cited a source
+      - AI output included a source reference
+      - document linked to a prior specification
+      - paper referenced a framework
+    cautions:
+      - Citation does not automatically prove contribution weight.
+      - Citation quality and context may require review.
+
+  - id: reuse_event
+    name: Reuse Event
+    description: >
+      Represents reuse of a structure, phrase, protocol component, schema,
+      example, design pattern, or conceptual module.
+    allocation_relevance: medium_to_high
+    examples:
+      - schema component reused
+      - protocol field structure reused
+      - conceptual architecture reused
+      - phrase or terminology reused
+    cautions:
+      - Reuse should be distinguished from coincidence.
+      - Structural similarity may require evidence review.
+
+  - id: influence_event
+    name: Influence Event
+    description: >
+      Represents inferred influence from one source, structure, or idea
+      to another output, artifact, model behavior, or document.
+    allocation_relevance: variable
+    examples:
+      - downstream document shows structural influence
+      - AI output reflects prior conceptual framework
+      - design follows a known lineage pattern
+      - multiple artifacts converge on a prior structure
+    cautions:
+      - Influence can be uncertain.
+      - Influence should preserve confidence and uncertainty.
+      - Influence should not be treated as ownership proof by itself.
+
+  - id: allocation_trigger_event
+    name: Allocation Trigger Event
+    description: >
+      Represents an event or event aggregation strong enough to move toward
+      allocation intent preparation.
+    allocation_relevance: high
+    examples:
+      - reviewed citation and reuse events exceed threshold
+      - trace bundle supports allocation review
+      - impact score and lineage evidence are sufficient for readiness review
+      - dispute-aware review approves allocation preparation
+    cautions:
+      - Trigger events should still pass allocation readiness.
+      - Trigger events are not payment instructions.
+
+minimal_royalty_event:
+  description: >
+    Minimal conceptual shape of a Royalty Event object.
+  fields:
+    event_id:
+      type: string
+      required: true
+      description: Unique event identifier.
+    event_type:
+      type: enum
+      required: true
+      allowed:
+        - access
+        - citation
+        - reuse
+        - influence
+        - allocation_trigger
+      description: Type of royalty event.
+    source_reference:
+      type: string
+      required: true
+      description: Reference to the origin, source, work, structure, or artifact.
+    trace_reference:
+      type: string
+      required: true
+      description: Reference to the trace record supporting the event.
+    actor_type:
+      type: enum
+      required: true
+      allowed:
+        - human
+        - ai_agent
+        - platform
+        - system
+        - organization
+        - unknown
+      description: Type of actor involved in the event.
+    actor_reference:
+      type: string
+      required: false
+      description: Optional reference to the actor.
+    target_reference:
+      type: string
+      required: false
+      description: Optional downstream target affected by the event.
+    weight:
+      type: number
+      required: false
+      description: Relative event weight, if available.
+    confidence:
+      type: number
+      required: false
+      range: "0.0-1.0"
+      description: Confidence score associated with the event.
+    review_status:
+      type: enum
+      required: true
+      allowed:
+        - pending
+        - approved
+        - disputed
+        - rejected
+        - superseded
+      description: Review status of the event.
+    dispute_status:
+      type: enum
+      required: false
+      allowed:
+        - none
+        - contested
+        - suspended
+        - resolved
+        - reversed
+        - superseded
+      description: Dispute state associated with the event.
+    allocation_relevance:
+      type: enum
+      required: false
+      allowed:
+        - none
+        - low
+        - medium
+        - high
+        - trigger_candidate
+      description: Degree to which the event may support allocation intent.
+    created_at:
+      type: datetime
+      required: false
+      description: Event creation timestamp.
+    notes:
+      type: string
+      required: false
+      description: Human-readable notes.
+
+event_lifecycle:
+  description: >
+    Conceptual lifecycle of a royalty event.
+  states:
+    - raw_signal_detected
+    - classified_as_event
+    - pending_review
+    - approved
+    - disputed
+    - rejected
+    - aggregated
+    - allocation_candidate
+    - allocation_triggered
+    - superseded
+  transitions:
+    - from: raw_signal_detected
+      to: classified_as_event
+      meaning: Signal is classified into a royalty event type.
+    - from: classified_as_event
+      to: pending_review
+      meaning: Event enters review or validation.
+    - from: pending_review
+      to: approved
+      meaning: Event is approved as valid for possible downstream use.
+    - from: pending_review
+      to: disputed
+      meaning: Event is contested or requires further review.
+    - from: pending_review
+      to: rejected
+      meaning: Event is rejected as invalid, irrelevant, or insufficient.
+    - from: approved
+      to: aggregated
+      meaning: Event is combined with other events for allocation analysis.
+    - from: aggregated
+      to: allocation_candidate
+      meaning: Event bundle becomes relevant to allocation intent preparation.
+    - from: allocation_candidate
+      to: allocation_triggered
+      meaning: Event or bundle supports creation of allocation intent.
+    - from: any
+      to: superseded
+      meaning: Event is replaced or updated by a newer record.
+
+event_weighting:
+  description: >
+    Conceptual guidance for event weighting. These are not final scoring rules.
+  access_event:
+    default_relevance: low
+    note: >
+      Access may indicate consumption but should usually require aggregation
+      or additional signals.
+  citation_event:
+    default_relevance: medium
+    note: >
+      Explicit citation may carry stronger allocation relevance than access,
+      depending on context and quality.
+  reuse_event:
+    default_relevance: medium_to_high
+    note: >
+      Reuse may indicate structural contribution but requires distinction
+      from coincidence or generic patterns.
+  influence_event:
+    default_relevance: variable
+    note: >
+      Influence may be important but often has uncertainty and should preserve
+      confidence scores.
+  allocation_trigger_event:
+    default_relevance: high
+    note: >
+      Trigger events indicate readiness to move toward allocation intent,
+      but still require allocation readiness checks.
+
+relationship_to_trace_architecture:
+  description: >
+    Trace Architecture records evidence or signal context.
+    Royalty Event Layer classifies trace-related signals into event objects.
+  flow:
+    - trace_record
+    - royalty_event
+    - allocation_intent
+  rule: >
+    Royalty events should preserve trace references and should not detach
+    allocation logic from evidence context.
+
+relationship_to_allocation_intent:
+  description: >
+    Allocation Intent may be prepared from reviewed, aggregated, or trigger-level
+    royalty events.
+  flow:
+    - royalty_event
+    - event_bundle
+    - allocation_candidate
+    - allocation_intent
+  rule: >
+    No single event type should automatically become allocation intent without
+    review-aware processing.
+
+relationship_to_payment_rail_bridge:
+  description: >
+    Payment Rail Bridge operates downstream of allocation intent.
+    Royalty events do not directly connect to payment rails.
+  flow:
+    - royalty_event
+    - allocation_intent
+    - payment_rail_bridge
+    - external_payment_rail
+  rule: >
+    Payment execution should not be triggered directly by raw royalty events.
+
+sample_event_object:
+  royalty_event:
+    event_id: evt_sample_001
+    event_type: citation
+    source_reference: origin_sample_001
+    trace_reference: trace_sample_001
+    actor_type: ai_agent
+    actor_reference: agent_sample_001
+    target_reference: output_sample_001
+    weight: 0.42
+    confidence: 0.78
+    review_status: pending
+    dispute_status: none
+    allocation_relevance: medium
+    created_at: "2026-05-20T00:00:00Z"
+    notes: >
+      Sample citation event. This does not create payment or legal entitlement.
+
+safety_principles:
+  - id: no_payment_execution
+    statement: Royalty events must not execute payment directly.
+
+  - id: no_ownership_determination
+    statement: Royalty events must not determine legal ownership by themselves.
+
+  - id: no_access_equals_payment
+    statement: Access events alone should not be treated as automatic payment obligation.
+
+  - id: preserve_review_status
+    statement: Events should preserve review status before downstream allocation.
+
+  - id: preserve_dispute_status
+    statement: Events should preserve dispute status and correction paths.
+
+  - id: prevent_event_collapse
+    statement: >
+      Access, citation, reuse, influence, and allocation trigger events should
+      remain distinguishable.
+
+non_goals:
+  - payment execution
+  - legal ownership determination
+  - copyright enforcement
+  - final royalty share calculation
+  - direct payment rail integration
+  - automatic conversion of access logs into payment
+  - bypassing review or dispute handling
+  - replacing allocation readiness
+  - replacing Royalty OS
+
+status_notes:
+  maturity: conceptual_event_layer
+  intended_use:
+    - specification drafting
+    - event modeling
+    - trace-to-allocation architecture
+    - Royalty OS event classification
+    - allocation intent preparation
+  not_intended_use:
+    - production payment execution
+    - legal claims
+    - automated enforcement
+    - direct settlement
+    - final ownership decisions
+
+license: MIT
